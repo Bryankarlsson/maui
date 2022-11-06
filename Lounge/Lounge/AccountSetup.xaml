@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:viewmodel="clr-namespace:Lounge.ViewModels"
+             x:DataType="viewmodel:AccountSetupViewModel"
+             x:Class="Lounge.AccountSetup"
+             Title="AccountSetup">
+    <ContentPage.Content>
+        <VerticalStackLayout>
+            <Grid ColumnDefinitions="*,Auto,*"
+                  RowDefinitions="160, Auto"
+                  Margin="0,0,0,10">
+                <Label Text="Välkommen!" Grid.RowSpan="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center" FontAttributes="None"
+                        FontSize="24"
+                        Margin="0,0,0,80"
+                        TextColor="#1C375C" ></Label>
+                <Frame Grid.RowSpan="2"
+                           Grid.Column="1"
+                           HeightRequest="160"
+                           WidthRequest="160"
+                           CornerRadius="80"
+                           HorizontalOptions="Center"
+                           Padding="0"
+                           IsClippedToBounds="True"
+                           Margin="0,80,0,0">
+                    <Image Aspect="AspectFill"
+                           HeightRequest="100"
+                           WidthRequest="120"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           Source="{Binding ProfilePicture}">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:AccountSetupViewModel}}, Path=UploadProfilePictureCommand}"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                        
+                        
+                    </Image>
+
+                </Frame>
+
+            </Grid>
+            <Border
+                StrokeThickness="1"
+                Padding="2"
+                HorizontalOptions="Center">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="5,5,5,5" />
+                </Border.StrokeShape>
+                <Entry
+                    HorizontalOptions="FillAndExpand"
+                    Placeholder="Name"
+                    Text="{Binding Name}"
+                    WidthRequest="180"
+                    VerticalOptions="FillAndExpand"
+                    
+                    />
+            </Border>
+            <Button Text="Next"
+                    HorizontalOptions="Center"
+                    WidthRequest="200"
+                    Margin="8"
+                    Command="{Binding SetupUserCommand}"></Button>
+            <VerticalStackLayout Padding="10" Spacing="10">
+                <!--<Label Text="{Binding Monkey.Details, StringFormat='Details: {0}'}"></Label>
+                <Label Text="{Binding Monkey.Location, StringFormat='Location: {0}'}"></Label>
+                <Label Text="{Binding Monkey.Population, StringFormat='Population: {0}'}"></Label>-->
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ContentPage.Content>
+</ContentPage>
